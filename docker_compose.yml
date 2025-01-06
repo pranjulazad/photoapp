@@ -1,0 +1,43 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgresdb
+      - POSTGRES_PASSWORD=postgresdb
+    ports:
+      - "5431:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  migration:
+    image: photoapp:1.0.0
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_USERNAME=postgresdb
+      - DB_PASSWORD=postgresdb
+      - DB_NAME=photoapp
+      - DB_DIALECT=postgres
+      - DB_PORT=5432
+    command: "migration"
+  app:
+    image: photoapp:1.0.0
+    depends_on:
+      - postgres
+      - migration
+    environment:
+      - NODE_ENV=production 
+      - DB_HOST=postgres
+      - DB_USERNAME=postgresdb
+      - DB_PASSWORD=postgresdb
+      - DB_NAME=photoapp
+      - DB_DIALECT=postgres
+      - DB_PORT=5432
+      - APP_PORT=3002
+    ports:
+      - 3002:3002
+
+volumes:
+  pgdata:

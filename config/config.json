@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": null,
     "database": "photoapp",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "postgres",
+    "username": "postgresdb",
+    "password": "postgresdb",
     "database": "photoapp",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }

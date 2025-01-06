@@ -1,0 +1,6 @@
+docker image rm <photoapp:1.0.0>
+docker rm <9b71c965d550>  
+docker run --name photoappRunning -p 3002:3000 -d photoapp:1.0.0
+docker build --platform="linux/amd64" -t photoapp:1.0.0 .
+docker exec -it ac24912a9e59 /bin/sh
+docker build -t photoapp:1.0.0 .  
